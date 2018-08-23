@@ -26,9 +26,9 @@ public class DrawingLines extends Application {
          primaryStage.setTitle("Rysuj linie");
          
          Group root = new Group();
-         Scene scene = new Scene(root, 300, 200, Color.TURQUOISE);
+         Scene scene = new Scene(root, 400, 300, Color.TURQUOISE);
          
-         Line vline = new Line(10,10,200,10);
+         Line vline = new Line(10,10,400,10);
          
          vline.setStroke(Color.VIOLET);
          vline.setStrokeWidth(15);
@@ -39,7 +39,8 @@ public class DrawingLines extends Application {
          
          root.getChildren().add(vline);
          
-         Line white= new Line(10,30,200,30);
+         Line white= new Line(10,30,400,30);
+         
           white.setStroke(Color.WHITE);
          white.setStrokeWidth(15);
         white.setStrokeLineCap(StrokeLineCap.ROUND);
@@ -47,6 +48,28 @@ public class DrawingLines extends Application {
       white.getStrokeDashArray().addAll(10d, 5d,15d,20d);
         white.setStrokeDashOffset(0);
          
+        root.getChildren().add(white);
+        
+        Slider slider= new Slider(0,100,0);
+        slider.setLayoutX(150);
+        slider.setLayoutY(100);
+        
+        // BEANS BINDS >
+        
+        vline.strokeDashOffsetProperty().bind(slider.valueProperty());
+        
+        root.getChildren().add(slider);
+        
+        Text offsettext= new Text("Stroke dash "+ slider.getValue());
+        offsettext.setX(15);
+        offsettext.setY(80);
+        offsettext.setStroke(Color.PLUM);
+        
+        slider.valueProperty().addListener((ov, curVal, newVal)-> offsettext.setText("Stroke dash 2"+ newVal));
+        
+        root.getChildren().add(offsettext);
+        
+        
                  
         primaryStage.setScene(scene);
         primaryStage.show();
