@@ -13,7 +13,9 @@ import javafx.scene.shape.*;
 import javafx.scene.control.Slider;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.shape.Arc;
 
+import java.util.Random;
 /**
  *
  * @author ulalu
@@ -65,9 +67,63 @@ public class DrawingLines extends Application {
         offsettext.setY(80);
         offsettext.setStroke(Color.PLUM);
         
-        slider.valueProperty().addListener((ov, curVal, newVal)-> offsettext.setText("Stroke dash 2"+ newVal));
+        slider.valueProperty().addListener((ov, curVal, newVal)-> {
+            offsettext.setText("Stroke dash 2"+ newVal);
+         });
         
         root.getChildren().add(offsettext);
+        // SHAPES
+        Path path= new Path();
+        path.setStrokeWidth(3);
+        
+        MoveTo moveto= new MoveTo();
+        moveto.setX(100);
+        moveto.setY(50);
+        
+        QuadCurveTo quadcurve = new QuadCurveTo();
+        quadcurve.setX(150);
+        quadcurve.setY(150);
+        quadcurve.setControlX(100);
+        quadcurve.setControlY(50);
+        
+        LineTo linel= new LineTo();
+        linel.setX(200);
+        linel.setY(100);
+        
+        LineTo linep= new LineTo();
+        linep.setX(100);
+        linep.setY(150);
+        
+        path.getElements().addAll(moveto, quadcurve, linel, linep);
+        
+        path.setTranslateY(30);
+        
+        path.setStroke(Color.AZURE);
+        path.setFill(Color.AQUA);
+        
+       
+       root.getChildren().add(path);
+        //RAND TEXT 
+       
+       Random rand = new Random (System.currentTimeMillis());
+       for(int i=0; i<100;i++) {
+           int x=rand.nextInt((int)300);
+           int y= rand.nextInt((int)250);
+           int blue=rand.nextInt(255);
+           
+           Text text = new Text(x,y,"Ice ice");
+           
+           int rot= rand.nextInt(360);
+           text.setFill(Color.BISQUE);
+           text.setRotate(rot);
+           
+           root.getChildren().add(text);
+                   
+       }
+        
+        
+        
+        
         
         
                  
