@@ -16,6 +16,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.shape.Arc;
 import javafx.scene.text.Font;
+import javafx.scene.control.*;
+import javafx.event.ActionEvent;
+
 
 import java.util.Random;
 /**
@@ -144,11 +147,23 @@ public class DrawingLines extends Application {
                    
        }
         
+        Button btn = new Button();
+        btn.setLayoutX(200);
+        btn.setLayoutY(150);
+        btn.setText("Confirm your vote");
+        Label label=new Label("Vote! ");
+        label.setLayoutX(150);
+        label.setLayoutY(200);
+        label.setFont(new Font("Arial",25));
+        label.setTextFill(Color.BLUEVIOLET);
+         
+        
+        btn.setOnAction( e ->{
+                label.setText("thank you for you voice");
+            });
         
         
-        
-        
-        
+        root.getChildren().addAll(btn,label);
                  
         primaryStage.setScene(scene);
         primaryStage.show();
